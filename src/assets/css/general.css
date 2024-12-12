@@ -1,0 +1,15 @@
+.tnos-data-table .table-responsive {
+    max-height: 620px;
+    margin-bottom: 30px;
+}
+
+.detail-list div {
+    margin-bottom: 1rem;
+}
+.detail-list small {
+    color: #7376A1;
+}
+.detail-list p {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
