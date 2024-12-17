@@ -77,6 +77,11 @@ export default (props = {}) => {
                     title: "Voucher",
                     link: Routes.OrderVoucher.path,
                 },
+                {
+                    id: 12,
+                    title: "Pendapatan",
+                    link: Routes.PaymentIn.path,
+                },
             ],
         },
         {
@@ -309,11 +314,6 @@ export default (props = {}) => {
                     id: 11,
                     title: "Penugasan",
                     link: Routes.PaymentOnProgress.path,
-                },
-                {
-                    id: 12,
-                    title: "Masuk",
-                    link: Routes.PaymentIn.path,
                 },
                 {
                     id: 16,

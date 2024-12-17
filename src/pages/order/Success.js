@@ -83,7 +83,8 @@ export default () => {
                 (item.sid && item.sid.toLowerCase().includes(searchTerm)) ||
                 (item.id && item.id.toLowerCase().includes(searchTerm)) ||
                 (item.invoice && item.invoice.toLowerCase().includes(searchTerm)) ||
-                (item.mmbr_name && item.mmbr_name.toLowerCase().includes(searchTerm))
+                (item.mmbr_name && item.mmbr_name.toLowerCase().includes(searchTerm)) ||
+                (item.mitracode && item.mitracode.includes(searchTerm))
             );
         });
 
@@ -298,7 +299,8 @@ export default () => {
                     item.mitracode !== "1808202200004" &&
                     item.mitracode !== "3011202200002" &&
                     item.mitracode !== "3011202200003" &&
-                    item.mitracode !== "1310202200001"
+                    item.mitracode !== "1310202200001" &&
+                    item.mitracode !== "1808202200002"
                 );
             } else if (selectedFilter === 2) {
                 datas = datas.filter(item =>
@@ -309,7 +311,8 @@ export default () => {
                     item.mitracode === "1808202200004" ||
                     item.mitracode === "3011202200002" ||
                     item.mitracode === "3011202200003" ||
-                    item.mitracode === "1310202200001"
+                    item.mitracode === "1310202200001" ||
+                    item.mitracode === "1808202200002"
                 );
             }
 

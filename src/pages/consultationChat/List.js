@@ -20,7 +20,7 @@ export default () => {
         {
             eventKey: "tab_menunggu",
             icon: faClock,
-            title: "Verifikasi Data",
+            title: "Menunggu",
             valueTab: "W"
         },
         {
@@ -37,8 +37,9 @@ export default () => {
         }
     ])
 
-    const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState("")
+    const today = moment().format("YYYY-MM-DD");
+    const [startDate, setStartDate] = useState(today)
+    const [endDate, setEndDate] = useState(today)
 
     const [activeTab, setActiveTab] = useState("")
     const [getTabPane, setTabPane] = useState([]);
@@ -98,7 +99,7 @@ export default () => {
         } else if (valueTab === "tab_disetujui") {
             statusValue = "Y"
         }
-        
+
         try {
             const response = await fetch(`${process.env.REACT_APP_CONSUL_DASH_CHAT}/status/${statusValue}`, {
                 headers: {
@@ -127,7 +128,7 @@ export default () => {
                     return moment(itemDate).isBetween(start, end, null, '[]');
                 });
             }
-            
+
             setTabData((prev) => ({
                 ...prev,
                 [valueTab]: filtered || []
@@ -450,6 +451,19 @@ export default () => {
                                                                             <td>{item.tconsult_name}</td>
                                                                             <td>
                                                                                 {limitString(ucFirst(item.tconsult_ask))}{" "}
+                                                                                <OverlayTrigger
+                                                                                    trigger={["hover", "focus"]}
+                                                                                    overlay={<Tooltip>Lihat</Tooltip>}
+                                                                                >
+                                                                                    <FontAwesomeIcon
+                                                                                        icon={faExternalLinkAlt}
+                                                                                        style={{ cursor: "pointer" }}
+                                                                                        onClick={() => {
+                                                                                            localStorage.setItem("webAnswer", item.tconsult_answer_web);
+                                                                                            handleShow(item);
+                                                                                        }}
+                                                                                    />
+                                                                                </OverlayTrigger>
                                                                             </td>
                                                                             <td>
                                                                                 {item.tconsult_status !== "Y" && (

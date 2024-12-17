@@ -416,6 +416,15 @@ export const TnosDataTable = (props) => {
             { label: "Nomor Telepon", value: "mobile" },
             { label: "Klasifikasi", value: "levelname" },
             { label: "Status", value: "mmit_status" }
+        ],
+        "payment-pendapatan": [
+            { label: "No. Invoice", value: "nomor_invoice"},
+            { label: "ID Pemesanan", value: "sid"},
+            { label: "Status Pemesanan", value: "status_pemesanan"},
+            { label: "Waktu Selesai", value: "waktu_selesai"},
+            { label: "Jumlah Invoice", value: "jumlah_invoice"},
+            { label: "Pendapatan", value: "pendapatan"},
+            { label: "Member", value: "nama_member"},
         ]
     }
 
@@ -796,6 +805,13 @@ export const TnosDataTable = (props) => {
                                                     : newItem.mmit_status === 10
                                                         ? "Offline"
                                                         : ""
+            } else if (props.getMenu === "payment-pendapatan") {
+                newItem.nomor_invoice = newItem.type + newItem.invoice
+                newItem.status_pemesanan = "Selesai"
+                newItem.waktu_selesai = newItem.type === "TLC" ? newItem.other : newItem.enddate + " " + newItem.endtime
+                newItem.jumlah_invoice = "IDR " + parseInt(newItem.price).toLocaleString("id-ID", {})
+                newItem.pendapatan =  "IDR " + parseInt(newItem.tnosfee).toLocaleString("id-ID", {})
+                newItem.nama_member = newItem.mmbr_name + " - " + newItem.membercode
             }
 
             return newItem;
@@ -914,7 +930,8 @@ export const TnosDataTable = (props) => {
                                             props.getMenu === "pwa-b2b-income" ||
                                             props.getMenu === "manual-order" ||
                                             props.getMenu === "order-voucher-pembayaran" ||
-                                            props.getMenu === "mitra-pengamanan" ? (
+                                            props.getMenu === "mitra-pengamanan" ||
+                                            props.getMenu === "payment-pendapatan" ? (
                                             `export-data-${props.getMenu}`
                                         ) : (
                                             `export-data-${props.getMenu}-${props.getTanggalMulai}-${props.getTanggalAkhir}`
