@@ -285,7 +285,7 @@ export default () => {
         const {
             id,
             tnos_invoice_id,
-            invoice_id,
+            external_id,
             paid_at,
             tnos_service_id,
             tnos_subservice_id,
@@ -337,7 +337,7 @@ export default () => {
                     )}
                 </td>
                 <td className="text-center">
-                    {!invoice_id ? (
+                    {!external_id ? (
                         <Badge bg="primary" className="badge-lg">
                             Menunggu Pembayaran &nbsp;
                             <OverlayTrigger
@@ -370,7 +370,7 @@ export default () => {
                                     );
                                 }}
                             >
-                                {invoice_id}
+                                {external_id}
                             </span>
                         </Link>
                     )}
@@ -594,6 +594,8 @@ export default () => {
                         "PAS"
                     ) : tnos_service_id === "6" && tnos_subservice_id === "1" ? (
                         "P1 Force"
+                    ) : tnos_service_id === "3" && tnos_subservice_id === "9" ? (
+                        "Manual Order"
                     ) : (
                         <>
                             &nbsp;
@@ -615,9 +617,9 @@ export default () => {
                             className="text-white"
                             onClick={() => {
                                 localStorage.setItem(
-                                    "pwaB2bIncomeDataById",
+                                    "pwaB2bOrderDataById",
                                     JSON.stringify(
-                                        getAllIncomeData.filter((item) => item.id === id)[0]
+                                        getIncomeData.filter((item) => item.id === id)[0]
                                     )
                                 );
                             }}
